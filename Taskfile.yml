@@ -1,0 +1,85 @@
+version: "3"
+
+tasks:
+  setup:
+    desc: Install dependencies and create .env.local if it does not exist.
+    cmds:
+      - bun install
+      - test -f .env.local || cp .env.example .env.local
+
+  dev:
+    desc: Start the development server.
+    cmds:
+      - bun run dev
+
+  build:
+    desc: Build the app for production.
+    cmds:
+      - bun run build
+
+  check:
+    desc: Run Biome checks.
+    cmds:
+      - bun run check
+
+  check:write:
+    desc: Run Biome checks and apply safe fixes.
+    cmds:
+      - bun run check:write
+
+  typecheck:
+    desc: Generate Next route types and run TypeScript.
+    cmds:
+      - bun run typecheck
+
+  test:
+    desc: Run unit tests in watch mode.
+    cmds:
+      - bun run test
+
+  test:run:
+    desc: Run unit tests once.
+    cmds:
+      - bun run test:run
+
+  test:watch:
+    desc: Run unit tests in watch mode.
+    cmds:
+      - bun run test
+
+  e2e:
+    desc: Run the Playwright smoke test.
+    cmds:
+      - bun run e2e
+
+  e2e:ui:
+    desc: Run Playwright in UI mode.
+    cmds:
+      - bun run e2e:ui
+
+  db:login:
+    desc: Authenticate the Supabase CLI.
+    cmds:
+      - bunx supabase login
+
+  db:link:
+    desc: Link this repo to the hosted Supabase project.
+    cmds:
+      - bun run db:link
+
+  db:push:
+    desc: Apply migrations and seed demo markets.
+    cmds:
+      - bun run db:push
+
+  db:types:
+    desc: Generate Supabase TypeScript types.
+    cmds:
+      - bun run db:types
+
+  verify:
+    desc: Run checks, typecheck, and unit tests.
+    cmds:
+      - task: check
+      - task: typecheck
+      - task: test:run
