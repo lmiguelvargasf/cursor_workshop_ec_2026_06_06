@@ -1,0 +1,89 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - link "MarketLab" [ref=e6] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e7]: Fake-money prediction markets for the Cursor workshop.
+        - link "Sign in" [ref=e9] [cursor=pointer]:
+          - /url: "#auth"
+    - main [ref=e10]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - paragraph [ref=e14]: Live markets
+          - heading "Trade the workshop outcome." [level=1] [ref=e15]
+        - paragraph [ref=e16]: A compact prediction market that demonstrates Supabase Auth, Database, Storage, RLS, Server Actions, and Cursor workflows.
+      - complementary [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e20]:
+              - heading "Portfolio" [level=2] [ref=e21]
+              - paragraph [ref=e22]: Balances and positions are owner-scoped through Supabase RLS.
+            - img [ref=e23]
+          - generic [ref=e27]: Sign in to see positions, trade history, and claimable winnings.
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - heading "Create market" [level=2] [ref=e31]
+              - paragraph [ref=e32]: Authenticated users can create fictional markets with a storage image.
+            - img [ref=e33]
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - text: Question
+              - textbox "Question" [ref=e36]:
+                - /placeholder: Will...
+            - generic [ref=e37]:
+              - text: Description
+              - textbox "Description" [ref=e38]:
+                - /placeholder: Define exactly how this resolves.
+            - generic [ref=e39]:
+              - generic [ref=e40]:
+                - text: Category
+                - textbox "Category" [ref=e41]:
+                  - /placeholder: Workshop
+              - generic [ref=e42]:
+                - text: Close date
+                - textbox "Close date" [ref=e43]
+            - generic [ref=e44]:
+              - generic [ref=e45]:
+                - img [ref=e46]
+                - text: Market image
+              - button "Market image" [ref=e50]
+          - button "Create market" [disabled]
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - paragraph [ref=e54]: Supabase Auth
+        - heading "Create a trader account with a fake starter balance." [level=2] [ref=e55]
+        - paragraph [ref=e56]: Email/password auth keeps the live workshop setup fast while still showing protected Server Actions, RLS, and owner-scoped data.
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - img [ref=e60]
+            - text: Sign in
+          - generic [ref=e63]:
+            - generic [ref=e64]: Email
+            - textbox "Email" [ref=e65]:
+              - /placeholder: you@example.com
+            - generic [ref=e66]: Password
+            - textbox "Password" [ref=e67]:
+              - /placeholder: At least 6 characters
+          - button "Sign in" [ref=e68]
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - img [ref=e71]
+            - text: Create account
+          - generic [ref=e74]: Display name
+          - textbox "Display name" [ref=e75]:
+            - /placeholder: Workshop trader
+          - generic [ref=e76]:
+            - generic [ref=e77]: Email
+            - textbox "Email" [ref=e78]:
+              - /placeholder: you@example.com
+            - generic [ref=e79]: Password
+            - textbox "Password" [ref=e80]:
+              - /placeholder: At least 6 characters
+          - button "Create account" [ref=e81]
+  - button "Open Next.js Dev Tools" [ref=e87] [cursor=pointer]:
+    - img [ref=e88]
+  - alert [ref=e91]
