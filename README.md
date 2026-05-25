@@ -1,6 +1,6 @@
 # MarketLab
 
-MarketLab is a focused Cursor workshop app: a fake-money prediction market built with Next.js, React, Tailwind CSS, shadcn-style primitives, and Supabase Auth, Database, and Storage.
+MarketLab is a Cursor workshop app: a fake-money prediction market built with Next.js, Tailwind CSS, shadcn-style primitives, and hosted Supabase.
 
 ## Stack
 
@@ -11,40 +11,52 @@ MarketLab is a focused Cursor workshop app: a fake-money prediction market built
 
 ## Setup
 
+Clone the repo, install tools, and create a local env file:
+
 ```bash
 mise install
 bun install
 cp .env.example .env.local
 ```
 
-Without Supabase env vars, the app renders demo markets and disables mutations.
+Create a hosted Supabase project for the workshop. In the Supabase dashboard, copy the project URL, anon key, and project ref into `.env.local`:
 
-For live auth, markets, trading, and image uploads, create a Supabase project, apply `supabase/migrations/20260525000000_marketlab.sql`, and set:
-
-```bash
+```env
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_PROJECT_REF=
 ```
 
-The `NEXT_PUBLIC_*` values are used by the app. `SUPABASE_PROJECT_REF` is only for Supabase CLI scripts such as linking the hosted project and generating types.
+For workshop speed, go to **Authentication > Sign In / Providers > Email** and turn off **Confirm email**.
 
-For workshop speed, disable email confirmations in Supabase Auth settings.
+Link the repo to the hosted project, then apply migrations and seed demo markets:
 
-Start the app:
+```bash
+bun run db:link
+bun run db:push
+```
+
+If the Supabase CLI asks you to authenticate first, run:
+
+```bash
+bunx supabase login
+```
+
+Start the app and open [http://localhost:3000](http://localhost:3000):
 
 ```bash
 bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+You should see seeded demo markets, be able to create an email/password account, create a market with an image, trade, resolve, and claim fake winnings.
 
 ## Commands
 
 - `bun run dev` - start the app.
+- `bun run db:link` - link this repo to the hosted Supabase project.
+- `bun run db:push` - apply migrations and seed demo markets.
+- `bun run db:types` - generate Supabase TypeScript types.
 - `bun run check` - run Biome checks.
 - `bun run typecheck` - generate Next route types and run TypeScript.
 - `bun run test:run` - run unit tests.
 - `bun run e2e` - run the Playwright smoke test.
-- `bun run db:start` / `bun run db:stop` / `bun run db:reset` - manage the local Supabase stack.
-- `bun run db:link` / `bun run db:push` / `bun run db:types` - work with the hosted Supabase project.
