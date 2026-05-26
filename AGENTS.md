@@ -15,6 +15,7 @@ This repository is a focused Cursor workshop app. Keep implementation choices sm
 - Use Supabase migrations as the schema source of truth.
 - Do not reintroduce Drizzle, Postgres drivers, Stripe, email, analytics, Sentry, React Hook Form, TanStack Query, or AI SDK dependencies.
 - Run project commands through `task` unless the needed command is not available in `Taskfile.yml`.
+- For hook changes, run `task hooks:validate` and `task hooks:run`.
 
 ## Product
 

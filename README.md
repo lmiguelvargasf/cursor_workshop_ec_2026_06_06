@@ -13,7 +13,7 @@ MarketLab is a Cursor workshop starter for building a fake-money prediction mark
 
 Install `mise` before starting: [Installing Mise](https://mise.jdx.dev/installing-mise.html).
 
-This project uses `mise` to install the pinned workshop tools, including Node.js, Bun, the GitHub CLI, and Task. Task is the workshop command runner; see the official [Task docs](https://taskfile.dev/docs/installation) for reference, but you do not need to install it separately when using `mise`.
+This project uses `mise` to install the pinned workshop tools. Task is the workshop command runner; see the official [Task docs](https://taskfile.dev/docs/installation) for reference, but you do not need to install it separately when using `mise`.
 
 ## Setup
 
@@ -23,6 +23,7 @@ Clone the repo, trust the project `mise` config, install tools, and set up depen
 mise trust
 mise install
 task setup
+task hooks:install
 ```
 
 Create a hosted Supabase project for the workshop. In the Supabase dashboard, copy the project URL, anon key, and project ref into `.env.local`:

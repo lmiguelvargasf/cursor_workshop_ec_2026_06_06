@@ -27,6 +27,21 @@ tasks:
     cmds:
       - bun run check:write
 
+  hooks:install:
+    desc: Install the prek pre-commit hook.
+    cmds:
+      - mise exec -- prek install -f
+
+  hooks:validate:
+    desc: Validate the prek configuration.
+    cmds:
+      - mise exec -- prek validate-config prek.toml
+
+  hooks:run:
+    desc: Run prek hooks across all files.
+    cmds:
+      - mise exec -- prek run --all-files
+
   typecheck:
     desc: Generate Next route types and run TypeScript.
     cmds:
