@@ -44,6 +44,31 @@ task dev
 
 You should see the MarketLab workshop start screen.
 
+## Workshop Build
+
+Workshop prompts live on the `prompts` branch. Use that branch when you are ready to run the Supabase MCP build prompt for Auth, Database, Storage, RLS, RPC, and Server Actions.
+
+If the Supabase CLI asks you to authenticate first, run:
+
+```bash
+task db:login
+```
+
+After the prompt creates the Supabase artifacts, link the repo and apply the generated migrations and seed data:
+
+```bash
+task db:link
+task db:push
+task db:types
+```
+
+Verify the finished workshop app:
+
+```bash
+task verify
+task e2e
+```
+
 ## Commands
 
 Run project commands through Task:
