@@ -22,7 +22,7 @@ This project uses `mise` to install the required tools.
 
 ## Setup
 
-After creating your repository from this template and cloning it locally, run:
+After cloning your repository, run:
 
 ```bash
 mise trust
