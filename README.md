@@ -14,7 +14,7 @@ MarketLab is a Cursor workshop starter for building a fake-money prediction mark
 
 Before starting, make sure you have:
 
-- A Supabase account
+- A [Supabase](https://supabase.com/) account
 - A hosted Supabase project for this workshop
 - `mise` installed: [Installing Mise](https://mise.jdx.dev/installing-mise.html)
 
