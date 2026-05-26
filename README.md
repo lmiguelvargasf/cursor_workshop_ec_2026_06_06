@@ -22,7 +22,7 @@ This project uses `mise` to install the pinned workshop tools. Task is the works
 
 ## Setup
 
-Clone the repo, trust the project `mise` config, install tools, and set up dependencies:
+Run the setup commands:
 
 ```bash
 mise trust
