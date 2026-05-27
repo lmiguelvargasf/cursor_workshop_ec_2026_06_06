@@ -72,6 +72,27 @@ tasks:
     cmds:
       - bun run e2e:ui
 
+  docker:up:
+    desc: Start app only (assumes hosted Supabase in .env.local).
+    cmds:
+      - docker compose -f .docker/compose.yml --profile dev up --build
+
+  docker:up:db:
+    desc: Start self-hosted Supabase only.
+    cmds:
+      - docker compose -f .docker/compose.yml --profile local-db up --build
+
+  docker:up:full:
+    desc: Start app + self-hosted Supabase together (full local dev).
+    cmds:
+      - docker compose -f .docker/compose.yml --profile full-dev up --build
+
+  docker:down:
+    desc: Stop all docker compose services and self-hosted Supabase.
+    cmds:
+      - docker compose -f .docker/compose.yml --profile full-dev down
+      - bunx supabase stop || true
+
   db:login:
     desc: Authenticate the Supabase CLI.
     cmds:
