@@ -9,8 +9,8 @@ export default function Home() {
 
       <main className="relative isolate overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,#080a0d_0%,#10151d_54%,#08120f_100%)]" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15 mix-blend-screen pointer-events-none" 
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15 mix-blend-screen pointer-events-none"
           style={{ backgroundImage: "url('/hero2-bg.webp')" }}
         />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00d395]/60 to-transparent" />
@@ -18,10 +18,13 @@ export default function Home() {
         <section className="relative mx-auto flex min-h-[calc(100svh-6.5rem)] max-w-6xl items-center justify-center px-4 py-14 text-center">
           <div className="mx-auto max-w-4xl animate-in fade-in slide-in-from-bottom-5 duration-700">
             <div className="relative mx-auto mb-8 w-44 sm:w-56">
-              {/* Reflector posterior plateado (Ambient Glow) - Brillo Aumentado */}
-              <div className="absolute inset-0 -z-10 rounded-[1.75rem] bg-white/30 blur-3xl scale-125 animate-pulse" style={{ animationDuration: '4s' }} />
-              
-              {/* Contenedor de la Imagen */}
+              {/* Silver ambient glow (back reflector) - increased brightness */}
+              <div
+                className="absolute inset-0 -z-10 rounded-[1.75rem] bg-white/30 blur-3xl scale-125 animate-pulse"
+                style={{ animationDuration: "4s" }}
+              />
+
+              {/* Image container */}
               <div className="relative overflow-hidden rounded-[1.75rem] border border-white/40 bg-zinc-950 shadow-[0_0_50px_rgba(255,255,255,0.25)]">
                 <Image
                   alt="Cursor Quito event mark"
