@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "MarketLab",
   description: "Fake-money prediction markets for a Cursor workshop.",
+  icons: {
+    icon: "/logo/iso-marketlab.webp",
+  },
 };
 
 export default function RootLayout({
