@@ -67,7 +67,7 @@ mise install
 
 # --- 6. bun install ------------------------------------------------------------
 Write-Step "Installing JS dependencies (bun install)"
-mise exec -- bun install
+mise exec "--" bun install
 
 # --- 7. .env.local -------------------------------------------------------------
 if (-not (Test-Path ".env.local")) {
@@ -80,7 +80,7 @@ if (-not (Test-Path ".env.local")) {
 # --- 8. prek hooks -------------------------------------------------------------
 if (-not $SkipHooks) {
     Write-Step "Installing prek pre-commit hooks"
-    mise exec -- prek install -f
+    mise exec "--" prek install -f
 }
 
 Write-Host ""
