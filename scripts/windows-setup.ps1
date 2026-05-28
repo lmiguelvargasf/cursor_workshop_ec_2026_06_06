@@ -1,6 +1,8 @@
 # MarketLab Windows setup
-# Installs mise via scoop, activates it, and runs project setup tasks.
+# Installs mise via Scoop when available, activates it, and runs project setup tasks.
 # Run from project root:
+#   pwsh -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
+# or:
 #   powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 
 [CmdletBinding()]
@@ -23,24 +25,27 @@ if (-not (Test-Path "mise.toml")) {
     throw "mise.toml not found. Run this script from the project root."
 }
 
-# --- 2. Install scoop ----------------------------------------------------------
-if (-not (Test-Command "scoop")) {
-    Write-Step "Installing scoop"
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
-    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-} else {
-    Write-Step "scoop already installed"
-}
-
-# --- 3. Install mise -----------------------------------------------------------
+# --- 2. Install mise -----------------------------------------------------------
 if (-not (Test-Command "mise")) {
-    Write-Step "Installing mise via scoop"
-    scoop install mise
+    if (Test-Command "scoop") {
+        Write-Step "Installing mise via Scoop"
+        scoop install mise
+    } else {
+        throw @"
+mise was not found, and Scoop is not installed.
+
+Install mise first, then rerun this script:
+  https://mise.jdx.dev/installing-mise.html
+
+If you use Scoop, install it from https://scoop.sh/ and run:
+  scoop install mise
+"@
+    }
 } else {
     Write-Step "mise already installed"
 }
 
-# --- 4. Activate mise in current session + persist in PowerShell profile ------
+# --- 3. Activate mise in current session + persist in PowerShell profile ------
 Write-Step "Activating mise in current session"
 (& mise activate pwsh) | Out-String | Invoke-Expression
 
@@ -58,23 +63,27 @@ if (-not (Test-Path $profilePath)) {
 
 if (-not (Select-String -Path $profilePath -Pattern 'mise activate pwsh' -Quiet)) {
     Write-Step "Adding mise activation to PowerShell profile: $profilePath"
+    $profileContent = Get-Content -Path $profilePath -Raw
+    if ($profileContent -and -not $profileContent.EndsWith("`n")) {
+        Add-Content -Path $profilePath -Value ""
+    }
     Add-Content -Path $profilePath -Value $activationLine
 } else {
     Write-Step "PowerShell profile already activates mise"
 }
 
-# --- 5. Trust and install project tools ---------------------------------------
+# --- 4. Trust and install project tools ---------------------------------------
 Write-Step "mise trust"
 mise trust
 
 Write-Step "mise install (node, bun, gh, prek, task)"
 mise install
 
-# --- 6. Project setup ----------------------------------------------------------
+# --- 5. Project setup ----------------------------------------------------------
 Write-Step "Running task setup"
 mise exec -- task setup
 
-# --- 7. prek hooks -------------------------------------------------------------
+# --- 6. prek hooks -------------------------------------------------------------
 if (-not $SkipHooks) {
     Write-Step "Running task hooks:install"
     mise exec -- task hooks:install
@@ -82,5 +91,5 @@ if (-not $SkipHooks) {
 
 Write-Host ""
 Write-Host "Setup complete." -ForegroundColor Green
-Write-Host "Open a new PowerShell window (so mise activation loads) and run:" -ForegroundColor Yellow
+Write-Host "Open a new window for this same PowerShell shell (so mise activation loads) and run:" -ForegroundColor Yellow
 Write-Host "  task dev" -ForegroundColor Yellow

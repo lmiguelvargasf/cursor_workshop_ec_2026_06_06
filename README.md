@@ -17,8 +17,10 @@ Before starting, make sure you have:
 - A [Supabase](https://supabase.com/) account
 - A hosted Supabase project for this workshop
 
-The setup scripts install `mise` automatically if it is missing. For manual
-setup, install `mise` first: [Installing Mise](https://mise.jdx.dev/installing-mise.html).
+This project uses `mise` to install the required tools. The setup scripts can
+install `mise` through Homebrew on macOS or Scoop on Windows when those package
+managers are already installed. Otherwise, install `mise` first:
+[Installing Mise](https://mise.jdx.dev/installing-mise.html).
 
 ## Setup
 
@@ -42,9 +44,13 @@ bash ./scripts/unix-setup.sh
 
 ### Windows (PowerShell)
 
-A setup script automates the steps above:
+A setup script automates the steps above. Use the same PowerShell executable
+that you plan to use for development, because the script updates that shell's
+profile:
 
 ```powershell
+pwsh -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
+# or:
 powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 ```
 
@@ -54,11 +60,13 @@ fails with `... is not digitally signed` even with `-ExecutionPolicy Bypass`
 instead, which runs it as commands rather than a file:
 
 ```powershell
+Get-Content .\scripts\windows-setup.ps1 -Raw | pwsh -NoProfile -Command -
+# or:
 Get-Content .\scripts\windows-setup.ps1 -Raw | powershell -NoProfile -Command -
 ```
 
-After it finishes, open a new PowerShell window (so `mise` activation loads) and
-run `task dev`.
+After it finishes, open a new window with the same PowerShell executable (`pwsh`
+or `powershell`) so `mise` activation loads, then run `task dev`.
 
 In your Supabase project dashboard, click **Connect**, select **Next.js**, and copy the `.env.local` values:
 

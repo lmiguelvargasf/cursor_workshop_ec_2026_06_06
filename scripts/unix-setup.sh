@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # MarketLab Unix setup (macOS + Linux)
-# Installs mise, activates it, and runs project setup tasks.
+# Installs mise via Homebrew when available, activates it, and runs project setup tasks.
 # Run from project root:
 #   bash ./scripts/unix-setup.sh
 
@@ -54,9 +54,16 @@ if ! have mise; then
         step "Installing mise via Homebrew"
         brew install mise
     else
-        step "Installing mise via official installer"
-        curl -fsSL https://mise.run | sh
-        export PATH="$HOME/.local/bin:$PATH"
+        cat >&2 <<'EOF'
+mise is required, but it was not found.
+
+Install mise with a trusted package manager, or follow:
+  https://mise.jdx.dev/installing-mise.html
+
+Then rerun:
+  bash ./scripts/unix-setup.sh
+EOF
+        exit 1
     fi
 else
     step "mise already installed"
