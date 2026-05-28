@@ -31,6 +31,34 @@ task setup
 task hooks:install
 ```
 
+### macOS / Linux
+
+A setup script automates the steps above:
+
+```bash
+bash ./scripts/unix-setup.sh
+```
+
+### Windows (PowerShell)
+
+A setup script automates the steps above:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
+```
+
+If a Group Policy enforces a signed-script execution policy, the command above
+fails with `... is not digitally signed` even with `-ExecutionPolicy Bypass`
+(policy scope overrides the command line). Pipe the script through stdin
+instead, which runs it as commands rather than a file:
+
+```powershell
+Get-Content .\scripts\windows-setup.ps1 -Raw | powershell -NoProfile -Command -
+```
+
+After it finishes, open a new PowerShell window (so `mise` activation loads) and
+run `task dev`.
+
 In your Supabase project dashboard, click **Connect**, select **Next.js**, and copy the `.env.local` values:
 
 ```env
