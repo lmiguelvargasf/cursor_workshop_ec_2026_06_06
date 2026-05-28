@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # MarketLab Unix setup (macOS + Linux)
-# Installs mise, activates it, installs project tools, prepares env.
+# Installs mise, activates it, and runs project setup tasks.
 # Run from project root:
 #   bash ./scripts/unix-setup.sh
 
@@ -82,22 +82,14 @@ mise trust
 step "mise install (node, bun, gh, prek, task)"
 mise install
 
-# --- 6. bun install ------------------------------------------------------------
-step "Installing JS dependencies (bun install)"
-mise exec -- bun install
+# --- 6. Project setup ----------------------------------------------------------
+step "Running task setup"
+mise exec -- task setup
 
-# --- 7. .env.local -------------------------------------------------------------
-if [ ! -f ".env.local" ]; then
-    step "Creating .env.local from .env.example"
-    cp .env.example .env.local
-else
-    step ".env.local already exists"
-fi
-
-# --- 8. prek hooks -------------------------------------------------------------
+# --- 7. prek hooks -------------------------------------------------------------
 if [ "$SKIP_HOOKS" != "1" ]; then
-    step "Installing prek pre-commit hooks"
-    mise exec -- prek install -f
+    step "Running task hooks:install"
+    mise exec -- task hooks:install
 fi
 
 printf '\n\033[1;32mSetup complete.\033[0m\n'

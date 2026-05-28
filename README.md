@@ -16,13 +16,14 @@ Before starting, make sure you have:
 
 - A [Supabase](https://supabase.com/) account
 - A hosted Supabase project for this workshop
-- `mise` installed: [Installing Mise](https://mise.jdx.dev/installing-mise.html)
 
-This project uses `mise` to install the required tools.
+The setup scripts install `mise` automatically if it is missing. For manual
+setup, install `mise` first: [Installing Mise](https://mise.jdx.dev/installing-mise.html).
 
 ## Setup
 
-After cloning your repository, run:
+After cloning your repository, either run one of the setup scripts below, or run
+these commands manually:
 
 ```bash
 mise trust

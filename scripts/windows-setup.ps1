@@ -1,5 +1,5 @@
 # MarketLab Windows setup
-# Installs mise via scoop, activates it, installs project tools, prepares env.
+# Installs mise via scoop, activates it, and runs project setup tasks.
 # Run from project root:
 #   powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 
@@ -26,7 +26,7 @@ if (-not (Test-Path "mise.toml")) {
 # --- 2. Install scoop ----------------------------------------------------------
 if (-not (Test-Command "scoop")) {
     Write-Step "Installing scoop"
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 } else {
     Write-Step "scoop already installed"
@@ -45,7 +45,12 @@ Write-Step "Activating mise in current session"
 (& mise activate pwsh) | Out-String | Invoke-Expression
 
 $profilePath = $PROFILE.CurrentUserAllHosts
-$activationLine = '(&mise activate pwsh) | Out-String | Invoke-Expression'
+$activationLine = '(& mise activate pwsh) | Out-String | Invoke-Expression'
+$profileParent = Split-Path -Parent $profilePath
+
+if (-not (Test-Path $profileParent)) {
+    New-Item -Path $profileParent -ItemType Directory -Force | Out-Null
+}
 
 if (-not (Test-Path $profilePath)) {
     New-Item -Path $profilePath -ItemType File -Force | Out-Null
@@ -65,22 +70,14 @@ mise trust
 Write-Step "mise install (node, bun, gh, prek, task)"
 mise install
 
-# --- 6. bun install ------------------------------------------------------------
-Write-Step "Installing JS dependencies (bun install)"
-mise exec "--" bun install
+# --- 6. Project setup ----------------------------------------------------------
+Write-Step "Running task setup"
+mise exec -- task setup
 
-# --- 7. .env.local -------------------------------------------------------------
-if (-not (Test-Path ".env.local")) {
-    Write-Step "Creating .env.local from .env.example"
-    Copy-Item ".env.example" ".env.local"
-} else {
-    Write-Step ".env.local already exists"
-}
-
-# --- 8. prek hooks -------------------------------------------------------------
+# --- 7. prek hooks -------------------------------------------------------------
 if (-not $SkipHooks) {
-    Write-Step "Installing prek pre-commit hooks"
-    mise exec "--" prek install -f
+    Write-Step "Running task hooks:install"
+    mise exec -- task hooks:install
 }
 
 Write-Host ""
