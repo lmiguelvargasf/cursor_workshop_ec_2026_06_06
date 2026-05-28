@@ -40,6 +40,14 @@ url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.13/bun-darwin-x
 checksum = "sha256:a98ba6a480f22fda9b343626b906a4e26aa53618bf85d2bc5928ecf2ba45f0ed"
 url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.13/bun-darwin-x64-baseline.zip"
 
+[tools.bun."platforms.windows-x64"]
+checksum = "sha256:85b14f3e0584218e9b63407b3aa6b90c4835ec5c32435c1f12cb6fc13667c7c9"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.13/bun-windows-x64.zip"
+
+[tools.bun."platforms.windows-x64-baseline"]
+checksum = "sha256:c68c7903c1190101590cc1b2129835f47211b3b37ae87759f2b97d6534aa3ad1"
+url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.13/bun-windows-x64-baseline.zip"
+
 [[tools.gh]]
 version = "2.92.0"
 backend = "aqua:cli/cli"
@@ -64,6 +72,11 @@ checksum = "sha256:ae9bb327ab0d91071bdada79f8f14034a2a0f19b0e001835a782eafa519d2
 url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_macOS_amd64.zip"
 provenance = "github-attestations"
 
+[tools.gh."platforms.windows-x64"]
+checksum = "sha256:b6a8df3c8c6b9c80f290906387673bc4d272840f3789c5650e0e4e6e75522785"
+url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_windows_amd64.zip"
+provenance = "github-attestations"
+
 [[tools.node]]
 version = "24.15.0"
 backend = "core:node"
@@ -83,6 +96,10 @@ url = "https://nodejs.org/dist/v24.15.0/node-v24.15.0-darwin-arm64.tar.gz"
 [tools.node."platforms.macos-x64"]
 checksum = "sha256:ffd5ee293467927f3ee731a553eb88fd1f48cf74eebc2d74a6babe4af228673b"
 url = "https://nodejs.org/dist/v24.15.0/node-v24.15.0-darwin-x64.tar.gz"
+
+[tools.node."platforms.windows-x64"]
+checksum = "sha256:cc5149eabd53779ce1e7bdc5401643622d0c7e6800ade18928a767e940bb0e62"
+url = "https://nodejs.org/dist/v24.15.0/node-v24.15.0-win-x64.zip"
 
 [[tools.prek]]
 version = "0.4.2"
@@ -108,6 +125,11 @@ checksum = "sha256:e9784e6d120bd6811afdbb9805b500342e184b72603d7cda06cd222cfd7a6
 url = "https://github.com/j178/prek/releases/download/v0.4.2/prek-x86_64-apple-darwin.tar.gz"
 provenance = "github-attestations"
 
+[tools.prek."platforms.windows-x64"]
+checksum = "sha256:6b571c5100ebbaf868dc3c209f39ceb4ec16d6f1f297ee9fbdde013fc8b777f7"
+url = "https://github.com/j178/prek/releases/download/v0.4.2/prek-x86_64-pc-windows-msvc.zip"
+provenance = "github-attestations"
+
 [[tools.task]]
 version = "3.50.0"
 backend = "aqua:go-task/task"
@@ -127,3 +149,7 @@ url = "https://github.com/go-task/task/releases/download/v3.50.0/task_darwin_arm
 [tools.task."platforms.macos-x64"]
 checksum = "sha256:da3ba003ec049fb8be1ff798132c951dcd08a60efbdc2d1e918bf2095cd4a39c"
 url = "https://github.com/go-task/task/releases/download/v3.50.0/task_darwin_amd64.tar.gz"
+
+[tools.task."platforms.windows-x64"]
+checksum = "sha256:82c20fbd19ac62073b8ecf89e026fbd209f702a2922106e4ff2ed6934d193038"
+url = "https://github.com/go-task/task/releases/download/v3.50.0/task_windows_amd64.zip"
