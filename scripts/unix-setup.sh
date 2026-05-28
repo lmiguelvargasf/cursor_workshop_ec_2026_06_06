@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # MarketLab Unix setup (macOS + Linux)
-# Installs mise via Homebrew when available, activates it, and runs project setup tasks.
+# Installs mise via Homebrew on macOS when available, activates it, and runs project setup tasks.
 # Run from project root:
 #   bash ./scripts/unix-setup.sh
 
