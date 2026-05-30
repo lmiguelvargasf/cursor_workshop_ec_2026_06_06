@@ -5,6 +5,7 @@ tasks:
     desc: Install dependencies and create .env.local if it does not exist.
     cmds:
       - bun install
+      - task: playwright:install
       - bun -e "const { copyFileSync, existsSync } = require('node:fs'); if (!existsSync('.env.local')) copyFileSync('.env.example', '.env.local')"
 
   dev:
@@ -71,6 +72,11 @@ tasks:
     desc: Run Playwright in UI mode.
     cmds:
       - bun run e2e:ui
+
+  playwright:install:
+    desc: Install Playwright browsers.
+    cmds:
+      - bunx playwright install
 
   db:login:
     desc: Authenticate the Supabase CLI.

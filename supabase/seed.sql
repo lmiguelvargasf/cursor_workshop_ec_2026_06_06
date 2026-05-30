@@ -1,0 +1,1 @@
+-- Future seed entrypoint for workshop data.

@@ -10,8 +10,8 @@ export function Header() {
             <Image
               src="/logo/logo-marketlab.webp"
               alt="MarketLab"
-              width={480}
-              height={96}
+              width={677}
+              height={369}
               className="h-24 w-auto object-contain"
               priority
             />
