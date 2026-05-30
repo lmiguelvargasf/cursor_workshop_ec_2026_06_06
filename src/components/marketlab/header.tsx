@@ -12,7 +12,7 @@ export function Header() {
               alt="MarketLab"
               width={677}
               height={369}
-              className="h-24 w-auto object-contain"
+              className="h-24 w-44 object-contain"
               priority
             />
           </Link>
