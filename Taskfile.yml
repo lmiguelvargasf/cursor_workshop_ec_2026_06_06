@@ -74,9 +74,9 @@ tasks:
       - bun run e2e:ui
 
   playwright:install:
-    desc: Install Playwright browsers.
+    desc: Install Playwright Chromium browser.
     cmds:
-      - bunx playwright install
+      - bunx playwright install chromium
 
   db:login:
     desc: Authenticate the Supabase CLI.
