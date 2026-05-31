@@ -112,12 +112,12 @@ step "mise install (node, bun, gh, prek, task)"
 
 # --- 6. Project setup ----------------------------------------------------------
 step "Running task setup"
-"$MISE_BIN" exec -- task setup
+"$MISE_BIN" exec task@3.50.0 -- task setup
 
 # --- 7. prek hooks -------------------------------------------------------------
 if [ "$SKIP_HOOKS" != "1" ]; then
     step "Running task hooks:install"
-    "$MISE_BIN" exec -- task hooks:install
+    "$MISE_BIN" exec task@3.50.0 -- task hooks:install
 fi
 
 printf '\n\033[1;32mSetup complete.\033[0m\n'

@@ -3,23 +3,9 @@ version: "3"
 silent: true
 
 vars:
-  MISE:
-    sh: |
-      if command -v mise >/dev/null 2>&1; then
-        command -v mise
-      elif [ -x "$HOME/.local/bin/mise" ]; then
-        printf '%s\n' "$HOME/.local/bin/mise"
-      elif [ -x "/opt/homebrew/bin/mise" ]; then
-        printf '%s\n' "/opt/homebrew/bin/mise"
-      elif [ -x "/usr/local/bin/mise" ]; then
-        printf '%s\n' "/usr/local/bin/mise"
-      else
-        printf '%s\n' "mise"
-      fi
-  X: "{{.MISE}} exec --"
-  BUN: "{{.X}} bun"
-  BUNX: "{{.X}} bunx"
-  PREK: "{{.X}} prek"
+  BUN: bun
+  BUNX: bunx
+  PREK: prek
 
 tasks:
   setup:

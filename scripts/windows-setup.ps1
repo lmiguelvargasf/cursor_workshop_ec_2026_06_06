@@ -20,6 +20,21 @@ function Test-Command($name) {
     return [bool](Get-Command $name -ErrorAction SilentlyContinue)
 }
 
+function Invoke-NativeCommand {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Command,
+
+        [Parameter(Mandatory = $true)]
+        [string[]]$Arguments
+    )
+
+    & $Command @Arguments
+    if ($LASTEXITCODE -ne 0) {
+        throw "$Command $($Arguments -join ' ') failed with exit code $LASTEXITCODE."
+    }
+}
+
 # --- 1. Verify project root ----------------------------------------------------
 if (-not (Test-Path "mise.toml")) {
     throw "mise.toml not found. Run this script from the project root."
@@ -29,7 +44,7 @@ if (-not (Test-Path "mise.toml")) {
 if (-not (Test-Command "mise")) {
     if (Test-Command "scoop") {
         Write-Step "Installing mise via Scoop"
-        scoop install mise
+        Invoke-NativeCommand -Command "scoop" -Arguments @("install", "mise")
     } else {
         throw @"
 mise was not found, and Scoop is not installed.
@@ -47,7 +62,11 @@ If you use Scoop, install it from https://scoop.sh/ and run:
 
 # --- 3. Activate mise in current session + persist in PowerShell profile ------
 Write-Step "Activating mise in current session"
-(& mise activate pwsh) | Out-String | Invoke-Expression
+$activationScript = & mise activate pwsh
+if ($LASTEXITCODE -ne 0) {
+    throw "mise activate pwsh failed with exit code $LASTEXITCODE."
+}
+$activationScript | Out-String | Invoke-Expression
 
 $profilePath = $PROFILE.CurrentUserAllHosts
 $activationLine = '(& mise activate pwsh) | Out-String | Invoke-Expression'
@@ -74,19 +93,19 @@ if (-not (Select-String -Path $profilePath -Pattern 'mise activate pwsh' -Quiet)
 
 # --- 4. Trust and install project tools ---------------------------------------
 Write-Step "mise trust"
-mise trust
+Invoke-NativeCommand -Command "mise" -Arguments @("trust")
 
 Write-Step "mise install (node, bun, gh, prek, task)"
-mise install
+Invoke-NativeCommand -Command "mise" -Arguments @("install")
 
 # --- 5. Project setup ----------------------------------------------------------
 Write-Step "Running task setup"
-mise exec -- task setup
+Invoke-NativeCommand -Command "mise" -Arguments @("exec", "task@3.50.0", "--", "task", "setup")
 
 # --- 6. prek hooks -------------------------------------------------------------
 if (-not $SkipHooks) {
     Write-Step "Running task hooks:install"
-    mise exec -- task hooks:install
+    Invoke-NativeCommand -Command "mise" -Arguments @("exec", "task@3.50.0", "--", "task", "hooks:install")
 }
 
 Write-Host ""

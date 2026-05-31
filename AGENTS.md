@@ -16,7 +16,7 @@ This repository is a focused Cursor workshop app. Keep implementation choices sm
 - When adding Supabase migrations or seed data, run `task db:push` and `task db:types` after the repo is linked to the hosted project.
 - Do not reintroduce Drizzle, Postgres drivers, Stripe, email, analytics, Sentry, React Hook Form, TanStack Query, or AI SDK dependencies.
 - Run project commands through `task` unless the needed command is not available in `Taskfile.yml`.
-- If `task` is missing in the current shell, use `mise exec -- task <task-name>` as a fallback.
+- If `task` is missing in the current shell, use `mise exec task@3.50.0 -- task <task-name>` as a fallback.
 - For hook changes, run `task hooks:validate` and `task hooks:run`.
 
 ## Product

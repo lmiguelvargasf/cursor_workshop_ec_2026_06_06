@@ -80,14 +80,14 @@ If `task` is missing, the current shell probably has not loaded mise yet. Open
 a new terminal, or use the one-off fallback:
 
 ```bash
-mise exec -- task dev
+mise exec task@3.50.0 -- task dev
 ```
 
 On macOS or Linux, if `mise` itself is not on `PATH`, use the full path from
 your installer. Common locations are:
 
 ```bash
-~/.local/bin/mise exec -- task dev
-/opt/homebrew/bin/mise exec -- task dev
-/usr/local/bin/mise exec -- task dev
+~/.local/bin/mise exec task@3.50.0 -- task dev
+/opt/homebrew/bin/mise exec task@3.50.0 -- task dev
+/usr/local/bin/mise exec task@3.50.0 -- task dev
 ```
