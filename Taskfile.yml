@@ -16,7 +16,7 @@ vars:
       else
         printf '%s\n' "mise"
       fi
-  X: "{{.MISE}} exec --"
+  X: "mise exec --"
   BUN: "{{.X}} bun"
   BUNX: "{{.X}} bunx"
   PREK: "{{.X}} prek"
