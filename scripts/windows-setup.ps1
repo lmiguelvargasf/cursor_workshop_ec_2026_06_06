@@ -100,12 +100,12 @@ Invoke-NativeCommand -Command "mise" -Arguments @("install")
 
 # --- 5. Project setup ----------------------------------------------------------
 Write-Step "Running task setup"
-Invoke-NativeCommand -Command "mise" -Arguments @("exec", "task@3.50.0", "--", "task", "setup")
+Invoke-NativeCommand -Command "task" -Arguments @("setup")
 
 # --- 6. prek hooks -------------------------------------------------------------
 if (-not $SkipHooks) {
     Write-Step "Running task hooks:install"
-    Invoke-NativeCommand -Command "mise" -Arguments @("exec", "task@3.50.0", "--", "task", "hooks:install")
+    Invoke-NativeCommand -Command "task" -Arguments @("hooks:install")
 }
 
 Write-Host ""

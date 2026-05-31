@@ -77,17 +77,18 @@ task --list
 ## Tool Troubleshooting
 
 If `task` is missing, the current shell probably has not loaded mise yet. Open
-a new terminal, or use the one-off fallback:
+a new terminal, or activate mise in the current shell:
 
-```bash
-mise exec task@3.50.0 -- task dev
+```powershell
+(& mise activate pwsh) | Out-String | Invoke-Expression
+task dev
 ```
 
-On macOS or Linux, if `mise` itself is not on `PATH`, use the full path from
-your installer. Common locations are:
+On macOS or Linux:
 
 ```bash
-~/.local/bin/mise exec task@3.50.0 -- task dev
-/opt/homebrew/bin/mise exec task@3.50.0 -- task dev
-/usr/local/bin/mise exec task@3.50.0 -- task dev
+eval "$(mise activate bash)"
+task dev
 ```
+
+Use `mise activate zsh` instead if your shell is zsh.
