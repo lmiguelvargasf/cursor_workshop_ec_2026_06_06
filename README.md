@@ -76,8 +76,8 @@ task --list
 
 ## Tool Troubleshooting
 
-If `task`, `bun`, or `prek` is missing, the current shell probably has not
-loaded mise yet. Open a new terminal, or use the one-off fallback:
+If `task` is missing, the current shell probably has not loaded mise yet. Open
+a new terminal, or use the one-off fallback:
 
 ```bash
 mise exec -- task dev

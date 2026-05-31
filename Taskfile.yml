@@ -1,89 +1,108 @@
 version: "3"
 
-# Commands assume mise activation has loaded the tools from mise.toml.
-# If a shell has not loaded mise, use `mise exec -- task <name>` as a fallback.
+silent: true
+
+vars:
+  MISE:
+    sh: |
+      if command -v mise >/dev/null 2>&1; then
+        command -v mise
+      elif [ -x "$HOME/.local/bin/mise" ]; then
+        printf '%s\n' "$HOME/.local/bin/mise"
+      elif [ -x "/opt/homebrew/bin/mise" ]; then
+        printf '%s\n' "/opt/homebrew/bin/mise"
+      elif [ -x "/usr/local/bin/mise" ]; then
+        printf '%s\n' "/usr/local/bin/mise"
+      else
+        printf '%s\n' "mise"
+      fi
+  X: "{{.MISE}} exec --"
+  BUN: "{{.X}} bun"
+  BUNX: "{{.X}} bunx"
+  PREK: "{{.X}} prek"
 
 tasks:
   setup:
     desc: Install dependencies and create .env.local if it does not exist.
     cmds:
-      - bun install
-      - bun -e "const { copyFileSync, existsSync } = require('node:fs'); if (!existsSync('.env.local')) copyFileSync('.env.example', '.env.local')"
+      - "{{.BUN}} install"
+      - |
+        {{.BUN}} -e "const { copyFileSync, existsSync } = require('node:fs'); if (!existsSync('.env.local')) copyFileSync('.env.example', '.env.local')"
 
   dev:
     desc: Start the development server.
     cmds:
-      - bun run dev
+      - "{{.BUN}} run dev"
 
   build:
     desc: Build the app for production.
     cmds:
-      - bun run build
+      - "{{.BUN}} run build"
 
   check:
     desc: Run Biome checks.
     cmds:
-      - bun run check
+      - "{{.BUN}} run check"
 
   check:write:
     desc: Run Biome checks and apply safe fixes.
     cmds:
-      - bun run check:write
+      - "{{.BUN}} run check:write"
 
   hooks:install:
     desc: Install the prek pre-commit hook.
     cmds:
-      - prek install -f
+      - "{{.PREK}} install -f"
 
   hooks:validate:
     desc: Validate the prek configuration.
     cmds:
-      - prek validate-config prek.toml
+      - "{{.PREK}} validate-config prek.toml"
 
   hooks:run:
     desc: Run prek hooks across all files.
     cmds:
-      - prek run --all-files
+      - "{{.PREK}} run --all-files"
 
   typecheck:
     desc: Generate Next route types and run TypeScript.
     cmds:
-      - bun run typecheck
+      - "{{.BUN}} run typecheck"
 
   test:
     desc: Run unit tests in watch mode.
     cmds:
-      - bun run test
+      - "{{.BUN}} run test"
 
   test:run:
     desc: Run unit tests once.
     cmds:
-      - bun run test:run
+      - "{{.BUN}} run test:run"
 
   test:watch:
     desc: Run unit tests in watch mode.
     cmds:
-      - bun run test
+      - "{{.BUN}} run test"
 
   db:login:
     desc: Authenticate the Supabase CLI.
     cmds:
-      - bunx supabase login
+      - "{{.BUNX}} supabase login"
 
   db:link:
     desc: Link this repo to the hosted Supabase project.
     cmds:
-      - bun run db:link
+      - "{{.BUN}} run db:link"
 
   db:push:
     desc: Apply generated Supabase migrations and seed data.
     cmds:
-      - bun run db:push
+      - "{{.BUN}} run db:push"
 
   db:types:
     desc: Generate Supabase TypeScript types.
     cmds:
-      - bun run db:types
+      - "{{.BUN}} run db:types"
 
   verify:
     desc: Run checks, typecheck, and unit tests.
