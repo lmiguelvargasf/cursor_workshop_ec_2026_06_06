@@ -16,7 +16,7 @@ if (-not (Get-Command "scoop" -ErrorAction SilentlyContinue)) {
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
-if (-not (Get-Command "mise" -ErrorAction SilentlyContinue)) {
+if (-not (Test Command "mise")) {
     Write-Step "Instalando mise via scoop"
     scoop install mise
 }
