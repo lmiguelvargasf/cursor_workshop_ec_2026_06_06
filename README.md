@@ -83,8 +83,11 @@ a new terminal, or use the one-off fallback:
 mise exec -- task dev
 ```
 
-On macOS or Linux, if `mise` itself is not on `PATH`, use:
+On macOS or Linux, if `mise` itself is not on `PATH`, use the full path from
+your installer. Common locations are:
 
 ```bash
 ~/.local/bin/mise exec -- task dev
+/opt/homebrew/bin/mise exec -- task dev
+/usr/local/bin/mise exec -- task dev
 ```
