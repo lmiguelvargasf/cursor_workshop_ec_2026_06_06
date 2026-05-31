@@ -101,4 +101,4 @@ fi
 
 printf '\n\033[1;32mSetup complete.\033[0m\n'
 printf '\033[1;33mOpen a new shell (so mise activation loads) and run:\033[0m\n'
-printf '\033[1;33m  task dev\033[0m\n'
+printf '\033[1;33m  mise exec -- task dev\033[0m\n'

@@ -1,5 +1,8 @@
 version: "3"
 
+# Run tasks through `mise exec -- task <name>` so every command below sees the
+# tool versions from mise.toml without depending on shell activation.
+
 tasks:
   setup:
     desc: Install dependencies and create .env.local if it does not exist.
@@ -30,17 +33,17 @@ tasks:
   hooks:install:
     desc: Install the prek pre-commit hook.
     cmds:
-      - mise exec -- prek install -f
+      - prek install -f
 
   hooks:validate:
     desc: Validate the prek configuration.
     cmds:
-      - mise exec -- prek validate-config prek.toml
+      - prek validate-config prek.toml
 
   hooks:run:
     desc: Run prek hooks across all files.
     cmds:
-      - mise exec -- prek run --all-files
+      - prek run --all-files
 
   typecheck:
     desc: Generate Next route types and run TypeScript.

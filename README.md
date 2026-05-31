@@ -30,6 +30,10 @@ powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 After the script finishes, close PowerShell and open a new PowerShell window
 before running the remaining commands.
 
+The commands below use `mise exec -- task ...` so the tools pinned in
+`mise.toml` are loaded without relying on shell activation. If your shell cannot
+find `mise`, use `~/.local/bin/mise` in place of `mise` on macOS or Linux.
+
 ## Supabase
 
 Create a hosted Supabase project, then copy the Next.js environment values into
@@ -53,15 +57,15 @@ turn off **Confirm email**.
 Then link the repo and generate types:
 
 ```bash
-task db:login
-task db:link
-task db:types
+mise exec -- task db:login
+mise exec -- task db:link
+mise exec -- task db:types
 ```
 
 ## Run
 
 ```bash
-task dev
+mise exec -- task dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -69,6 +73,6 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Useful Commands
 
 ```bash
-task verify
-task --list
+mise exec -- task verify
+mise exec -- task --list
 ```

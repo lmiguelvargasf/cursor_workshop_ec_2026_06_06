@@ -13,10 +13,10 @@ This repository is a focused Cursor workshop app. Keep implementation choices sm
 - Use Next.js App Router, React Server Components by default, and Server Actions for mutations.
 - Use Supabase Auth, Database, and Storage through `@supabase/ssr` and `@supabase/supabase-js`.
 - Use Supabase migrations as the schema source of truth.
-- When adding Supabase migrations or seed data, run `task db:push` and `task db:types` after the repo is linked to the hosted project.
+- When adding Supabase migrations or seed data, run `mise exec -- task db:push` and `mise exec -- task db:types` after the repo is linked to the hosted project.
 - Do not reintroduce Drizzle, Postgres drivers, Stripe, email, analytics, Sentry, React Hook Form, TanStack Query, or AI SDK dependencies.
-- Run project commands through `task` unless the needed command is not available in `Taskfile.yml`.
-- For hook changes, run `task hooks:validate` and `task hooks:run`.
+- Run project commands through `mise exec -- task` unless the needed command is not available in `Taskfile.yml`.
+- For hook changes, run `mise exec -- task hooks:validate` and `mise exec -- task hooks:run`.
 
 ## Product
 

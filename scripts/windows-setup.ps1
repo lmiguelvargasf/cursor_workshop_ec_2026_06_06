@@ -92,4 +92,4 @@ if (-not $SkipHooks) {
 Write-Host ""
 Write-Host "Setup complete." -ForegroundColor Green
 Write-Host "Open a new window with the same PowerShell executable you used for this script (so mise activation loads) and run:" -ForegroundColor Yellow
-Write-Host "  task dev" -ForegroundColor Yellow
+Write-Host "  mise exec -- task dev" -ForegroundColor Yellow
