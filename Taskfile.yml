@@ -1,7 +1,7 @@
 version: "3"
 
-# Run tasks through `mise exec -- task <name>` so every command below sees the
-# tool versions from mise.toml without depending on shell activation.
+# Commands assume mise activation has loaded the tools from mise.toml.
+# If a shell has not loaded mise, use `mise exec -- task <name>` as a fallback.
 
 tasks:
   setup:

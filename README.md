@@ -27,12 +27,9 @@ If Windows says `pwsh` is not recognized, run this command instead:
 powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 ```
 
-After the script finishes, close PowerShell and open a new PowerShell window
-before running the remaining commands.
-
-The commands below use `mise exec -- task ...` so the tools pinned in
-`mise.toml` are loaded without relying on shell activation. If your shell cannot
-find `mise`, use `~/.local/bin/mise` in place of `mise` on macOS or Linux.
+After the script finishes, open a new terminal window before running the
+remaining commands. The setup script adds mise activation to your shell so the
+tools pinned in `mise.toml` are available through normal `task ...` commands.
 
 ## Supabase
 
@@ -57,15 +54,15 @@ turn off **Confirm email**.
 Then link the repo and generate types:
 
 ```bash
-mise exec -- task db:login
-mise exec -- task db:link
-mise exec -- task db:types
+task db:login
+task db:link
+task db:types
 ```
 
 ## Run
 
 ```bash
-mise exec -- task dev
+task dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -73,6 +70,21 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Useful Commands
 
 ```bash
-mise exec -- task verify
-mise exec -- task --list
+task verify
+task --list
+```
+
+## Tool Troubleshooting
+
+If `task`, `bun`, or `prek` is missing, the current shell probably has not
+loaded mise yet. Open a new terminal, or use the one-off fallback:
+
+```bash
+mise exec -- task dev
+```
+
+On macOS or Linux, if `mise` itself is not on `PATH`, use:
+
+```bash
+~/.local/bin/mise exec -- task dev
 ```
