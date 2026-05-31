@@ -15,19 +15,23 @@ bash ./scripts/unix-setup.sh
 
 ### Windows
 
-Run this in PowerShell:
+Open PowerShell and run this command first:
 
 ```powershell
 pwsh -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 ```
 
-If you use Windows PowerShell instead of PowerShell 7, run:
+If Windows says `pwsh` is not recognized, run this command instead:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 ```
 
-After the script finishes, open a new terminal window.
+Do not run both commands. `pwsh` is PowerShell 7. `powershell` is the older
+Windows PowerShell that ships with Windows.
+
+After the script finishes, close that PowerShell window and open a new one of
+the same kind before running `task dev`.
 
 ## Supabase
 
