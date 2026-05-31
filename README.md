@@ -27,9 +27,6 @@ If Windows says `pwsh` is not recognized, run this command instead:
 powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 ```
 
-Do not run both commands. `pwsh` is PowerShell 7. `powershell` is the older
-Windows PowerShell that ships with Windows.
-
 After the script finishes, close that PowerShell window and open a new one of
 the same kind before running `task dev`.
 
