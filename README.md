@@ -5,8 +5,7 @@ MarketLab is a fake-money prediction market app for the Cursor workshop.
 ## Setup
 
 Clone the repo, open a terminal in the project folder, and run the setup script
-for your operating system. After it finishes, open a new terminal window before
-continuing.
+for your operating system.
 
 ### macOS / Linux
 
@@ -27,6 +26,9 @@ If Windows says `pwsh` is not recognized, run this command instead:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\windows-setup.ps1
 ```
+
+After the script finishes, close PowerShell and open a new PowerShell window
+before running the remaining commands.
 
 ## Supabase
 
