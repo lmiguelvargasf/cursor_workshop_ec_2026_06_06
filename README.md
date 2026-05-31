@@ -70,6 +70,5 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
 task verify
-task e2e
 task --list
 ```
